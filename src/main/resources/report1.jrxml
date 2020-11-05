@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="350" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8221e155-5de8-416b-affc-247a4ad507b5">
+	<property name="ireport.zoom" value="1.210000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\@ProjectAgung\\buana_mekar\\buanaMekar\\DATA KERJA\\PROYEK BUANA MEKAR\\buanaMekar\\src\\main\\resources\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="param1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{param1}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="param2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{param2}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 
+p.merk_produk namaBarang,
+p.id kodeBarang,
+o.quantity quantity,
+p.harga hargaSatuan,
+o.total_harga subHarga,
+t.alamat_toko alamatToko,
+sj.tgl_kirim tanggalKirim
+from orderan o, surat_jalan sj, toko t, produk p
+where o.toko = t.id 
+AND sj.orderan = o.id 
+AND p.id = o.produk
+AND t.nama_toko like $P{param1}
+AND sj.tgl_kirim like $P{param2}]]>
+	</queryString>
+	<field name="namaBarang" class="java.lang.String"/>
+	<field name="kodeBarang" class="java.lang.String"/>
+	<field name="quantity" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hargaSatuan" class="java.lang.String"/>
+	<field name="subHarga" class="java.lang.String"/>
+	<field name="alamatToko" class="java.lang.String"/>
+	<field name="tanggalKirim" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e3de1919-a67e-44f6-abab-756377309c45" x="147" y="19" width="425" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRACTOR, SUPPLIER, TRANSPORTASI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="247bba83-ef47-4732-aa7e-c1e30a972b4f" x="106" y="-15" width="480" height="42" forecolor="#003399"/>
+				<textElement>
+					<font fontName="SansSerif" size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PT. BUANA PUTRA KALTIM]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="334cf2ca-7355-4655-81a9-4632b76b1a6d" x="17" y="-15" width="103" height="53"/>
+				<imageExpression><![CDATA["static/images/bpk3.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="869bfd6c-64fe-46d1-ac1b-146c809fe8da" x="104" y="-3" width="515" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kantor : Jln. I.A MUIS No.034 (Poros Bontang-Sangatta),Sangatta - Kab. Kutai Timur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67f82e1e-a12c-4ed5-9975-cfe4efbd5fc6" x="120" y="10" width="578" height="20" forecolor="#000000"/>
+				<textElement/>
+				<text><![CDATA[Email : office@buanaputrakaltim.com Telp.(0549) 21327 Hp. 08115811196]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0c49c814-6294-4813-baff-2e363d0c01a0" x="417" y="24" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{param1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cd48586f-9b5f-444a-8bf7-cc043f2fdad7" x="417" y="43" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{param1}.replaceAll($P{param1}, $F{alamatToko})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="08b33b41-f469-4eea-8d6e-f10a38cee88a" x="350" y="25" width="67" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Toko :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="83e2924f-de04-49bf-b30c-b2a498dcb863" x="350" y="43" width="67" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alamat        :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="725493d5-2ae9-4479-b357-a9d79e8684f3" x="87" y="25" width="135" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Term           :    30 Hari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4c247431-cbfe-4507-b15e-e91445c7231e" x="87" y="43" width="67" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal      :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="141656aa-1aac-4da1-a188-058a92d6b8ee" x="155" y="43" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{param1}.replaceAll($P{param1}, $F{tanggalKirim})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901" x="170" y="4" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jenis Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901" x="341" y="4" width="71" height="20"/>
+				<textElement/>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5334600-bbe7-4794-bfd9-6d9d41fbe8bb" x="-18" y="-6" width="542" height="15"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8a92710f-c8e1-40c0-b1bf-32c8e657602e" x="-17" y="16" width="533" height="13"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7e89630c-0ec1-4161-8fa5-e8cf5ecd41e8" x="58" y="4" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kode Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5334600-bbe7-4794-bfd9-6d9d41fbe8bb" x="431" y="-6" width="176" height="15"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8a92710f-c8e1-40c0-b1bf-32c8e657602e" x="431" y="16" width="176" height="13"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement uuid="8f690e6e-c0fd-4c4f-9643-7293b270aa8a" x="170" y="0" width="100" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{namaBarang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5aef7903-d26a-400a-abef-581c72419561" x="341" y="0" width="100" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9a7f3b2e-13d4-49bc-bb6e-abe921ce4f35" x="58" y="0" width="100" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{kodeBarang}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3a47ea72-3218-465c-90f0-a6e42326729f" x="18" y="15" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Penerima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3a47ea72-3218-465c-90f0-a6e42326729f" x="478" y="12" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hormat Kami]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f4653ac0-7f3c-408b-b28b-af090dafe98f" stretchType="RelativeToBandHeight" x="-18" y="-1" width="560" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="f64ad4af-435e-4b3f-b3d6-6221041d0a55" x="7" y="80" width="100" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="d3b6116e-b3fc-4c07-9528-70b1132c217d" x="134" y="15" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Gudang]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="d929faa4-e485-47a1-9e38-a1f2ac13ae20" x="123" y="80" width="100" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="e8b64934-230a-4e70-a79c-cd488e97381c" x="243" y="80" width="100" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="724e4ecb-5645-488f-a024-a068a9a90f04" x="254" y="14" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pengirim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a8cec257-4e98-4e85-937b-7db9d464955b" x="366" y="14" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Mengetahui]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="ea019b1b-1a01-4fc6-b7ca-fb2e0dcb7f2d" x="355" y="80" width="100" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="f4653ac0-7f3c-408b-b28b-af090dafe98f" stretchType="RelativeToBandHeight" x="431" y="-1" width="176" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="f64ad4af-435e-4b3f-b3d6-6221041d0a55" x="472" y="80" width="100" height="1"/>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>

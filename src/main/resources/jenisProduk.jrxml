@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8221e155-5de8-416b-affc-247a4ad507b5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\@ProjectAgung\\buana_mekar\\buanaMekar\\DATA KERJA\\PROYEK BUANA MEKAR\\buanaMekar\\src\\main\\resources\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     jenis_produk.`jenis_produk` AS jenis_produk_jenis_produk
+FROM
+     `jenis_produk` jenis_produk]]>
+	</queryString>
+	<field name="jenisProduk" class="java.lang.String"/>
+	<field name="produkList" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="213" y="40" width="145" height="20" uuid="247bba83-ef47-4732-aa7e-c1e30a972b4f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PT. BUANA PUTRA KALTIM]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="445" y="40" width="100" height="20" uuid="5eb2605b-212b-4dca-9c71-889209dfa340"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="178" y="0" width="233" height="20" uuid="e3de1919-a67e-44f6-abab-756377309c45"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRACTOR, SUPPLIER, TRANSPORTASI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="20" width="408" height="20" uuid="869bfd6c-64fe-46d1-ac1b-146c809fe8da"/>
+				<text><![CDATA[Kantor : Jln. I.A MUIS No.034 (Poros Bontang-Sangatta),Sangatta - Kab. Kutai Timur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="40" width="359" height="20" forecolor="#3333FF" uuid="67f82e1e-a12c-4ed5-9975-cfe4efbd5fc6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Email : office@buanaputrakaltim.com Telp.(0549) 21327 Hp. 08115811196]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="0" width="100" height="20" uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901"/>
+				<text><![CDATA[Jenis Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="1" width="71" height="20" uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901"/>
+				<text><![CDATA[Merk Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="0" width="71" height="20" uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901"/>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="-1" width="71" height="20" uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901"/>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="-3" width="71" height="20" uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901"/>
+				<text><![CDATA[Tanggal Kirim]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="0" width="100" height="20" uuid="8f690e6e-c0fd-4c4f-9643-7293b270aa8a"/>
+				<textFieldExpression><![CDATA[$F{jenisProduk}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="105" y="0" width="56" height="20" uuid="ec9c792f-bfa7-4d21-ba48-eb4e5fe4d85a"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{produkList})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "jenisProduk_produk.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="0" width="79" height="20" uuid="3a47ea72-3218-465c-90f0-a6e42326729f"/>
+				<text><![CDATA[Tanda Terima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="79" height="20" uuid="3a47ea72-3218-465c-90f0-a6e42326729f"/>
+				<text><![CDATA[Hormat Kami]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="243" y="17" width="100" height="20" uuid="ddf70e84-04fa-4ae7-b6ce-ffddfd078d84"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="7" y="-8" width="100" height="1" uuid="f64ad4af-435e-4b3f-b3d6-6221041d0a55"/>
+			</line>
+			<line>
+				<reportElement x="447" y="-6" width="100" height="1" uuid="f64ad4af-435e-4b3f-b3d6-6221041d0a55"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

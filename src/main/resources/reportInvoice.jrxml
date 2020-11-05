@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="350" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8221e155-5de8-416b-affc-247a4ad507b5">
+	<property name="ireport.zoom" value="2.143588810000011"/>
+	<property name="ireport.x" value="530"/>
+	<property name="ireport.y" value="95"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\@ProjectAgung\\buana_mekar\\buanaMekar\\DATA KERJA\\PROYEK BUANA MEKAR\\buanaMekar\\src\\main\\resources\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="param1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{param1}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="param2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{param2}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select DISTINCT 
+p.merk_produk namaBarang,
+o.quantity quantity,
+concat('Rp ', format( (p.harga), 0)) hargaSatuan,
+concat('Rp ', format( (o.total_harga), 0)) subHarga,
+concat('Rp ', format( (i.total_harga), 0)) totalHarga,
+concat('Rp ', format( (i.total_harga - i.ppn), 0)) subTotalHarga,
+i.invoice invoice,
+concat('Rp ', format( (i.ppn), 0)) ppnnya 
+from orderan o, surat_jalan sj, toko t, produk p, invoice i
+where o.toko = t.id 
+AND sj.orderan = o.id 
+AND p.id = o.produk
+AND i.surat_jalan = sj.id
+AND t.nama_toko like $P{param1}
+AND sj.tgl_kirim like $P{param2}]]>
+	</queryString>
+	<field name="namaBarang" class="java.lang.String"/>
+	<field name="quantity" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hargaSatuan" class="java.lang.String"/>
+	<field name="subHarga" class="java.lang.String"/>
+	<field name="totalHarga" class="java.lang.String"/>
+	<field name="subTotalHarga" class="java.lang.String"/>
+	<field name="invoice" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ppnnya" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e3de1919-a67e-44f6-abab-756377309c45" x="130" y="14" width="425" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRACTOR, SUPPLIER, TRANSPORTASI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="247bba83-ef47-4732-aa7e-c1e30a972b4f" x="97" y="-17" width="480" height="42" forecolor="#003399"/>
+				<textElement>
+					<font fontName="SansSerif" size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PT. BUANA PUTRA KALTIM]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="334cf2ca-7355-4655-81a9-4632b76b1a6d" x="10" y="-11" width="103" height="53"/>
+				<imageExpression><![CDATA["static/images/bpk3.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="869bfd6c-64fe-46d1-ac1b-146c809fe8da" x="101" y="31" width="515" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kantor : Jln. I.A MUIS No.034 (Poros Bontang-Sangatta),Sangatta - Kab. Kutai Timur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67f82e1e-a12c-4ed5-9975-cfe4efbd5fc6" x="120" y="43" width="578" height="20" forecolor="#000000"/>
+				<textElement/>
+				<text><![CDATA[Email : office@buanaputrakaltim.com Telp.(0549) 21327 Hp. 08115811196]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="5eb2605b-212b-4dca-9c71-889209dfa340" x="57" y="36" width="187" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e2762704-4eef-49b9-8ecb-b54afddb446f" x="56" y="18" width="391" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{param1}.replaceAll( $P{param1}, $F{invoice} )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="91ee2831-920e-48f5-a7e4-7445086c8ae4" x="25" y="-2" width="31" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Toko :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0c49c814-6294-4813-baff-2e363d0c01a0" x="56" y="-2" width="391" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{param1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="91ee2831-920e-48f5-a7e4-7445086c8ae4" x="25" y="18" width="31" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PO    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b829b53e-ef68-4842-bf02-cddeb13bfa7f" x="24" y="36" width="33" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date  :]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="69b1e426-f2f3-4272-88a8-8d86830ca970" x="415" y="7" width="153" height="36"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="6ece24f3-447f-4e6d-83f6-e0ef82720f4b" x="451" y="11" width="99" height="29"/>
+				<textElement>
+					<font size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901" x="6" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jenis Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901" x="178" y="0" width="71" height="20"/>
+				<textElement/>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4cf23c5c-7ca9-4865-acf9-aac68fb34901" x="287" y="0" width="71" height="20"/>
+				<textElement/>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="40e8424f-908e-4409-9599-efe85b981fd2" x="433" y="2" width="71" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5334600-bbe7-4794-bfd9-6d9d41fbe8bb" x="-19" y="-7" width="552" height="15"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5334600-bbe7-4794-bfd9-6d9d41fbe8bb" x="-19" y="9" width="504" height="15"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5334600-bbe7-4794-bfd9-6d9d41fbe8bb" x="433" y="9" width="164" height="15"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5334600-bbe7-4794-bfd9-6d9d41fbe8bb" x="433" y="-7" width="164" height="15"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement uuid="8f690e6e-c0fd-4c4f-9643-7293b270aa8a" x="6" y="-1" width="100" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{namaBarang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5aef7903-d26a-400a-abef-581c72419561" x="177" y="-1" width="100" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ccc24510-ed5e-4ab6-8a6a-06d5ec8f3967" x="287" y="-1" width="100" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hargaSatuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ff99b466-2280-4038-86e0-0e645f70b447" x="433" y="-1" width="100" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{subHarga}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3a47ea72-3218-465c-90f0-a6e42326729f" x="14" y="12" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanda Terima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3a47ea72-3218-465c-90f0-a6e42326729f" x="171" y="12" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hormat Kami]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="65fd513d-90fb-4ea7-a61e-a1c79da8a649" x="434" y="38" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{param1}.replaceAll( $P{param1}, $F{totalHarga})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="835c4cd5-8cff-40bf-94ea-79ddcdac6619" x="359" y="38" width="71" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total               : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="44b9df39-928e-4a76-a16b-3d126a36c929" x="359" y="24" width="71" height="20"/>
+				<textElement/>
+				<text><![CDATA[PPN                :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0867906f-c1fc-4006-af62-a0bfc1f3b5e4" x="434" y="24" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{param1}.replaceAll($P{param1}, $F{ppnnya})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b5334600-bbe7-4794-bfd9-6d9d41fbe8bb" x="-20" y="-6" width="376" height="15"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5334600-bbe7-4794-bfd9-6d9d41fbe8bb" x="319" y="-6" width="278" height="15"/>
+				<textElement/>
+				<text><![CDATA[------------------------------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="44b9df39-928e-4a76-a16b-3d126a36c929" x="358" y="9" width="76" height="20"/>
+				<textElement/>
+				<text><![CDATA[Sub Total        : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0867906f-c1fc-4006-af62-a0bfc1f3b5e4" x="434" y="9" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{param1}.replaceAll( $P{param1}, $F{subTotalHarga})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="e709fe23-96dc-473a-b83f-266a5d99b09f" x="-1" y="75" width="100" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="e709fe23-96dc-473a-b83f-266a5d99b09f" x="156" y="76" width="100" height="1"/>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>

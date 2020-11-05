@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <div th:replace="frag/component::head"></div>
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        <div th:replace="frag/component::sidenavbar"></div>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Main
+                    <small>dashboard</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="#">Tables</a></li>
+                    <li class="active">Data tables</li>
+                </ol>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="container jumbotron-success">
+                                    <h1 class="display-4">Hello <a href="#">[[${#httpServletRequest.remoteUser}]]</a></h1>
+                                    <p class="lead">Selamat datang di website manajemen pergudangan PT. Buana Putra Kaltim.</p>
+                                    <hr class="my-4">
+                                    <p>Welcome to the official website of PT. Buana Putra Kaltim.</p>
+                                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <div th:replace="frag/component::footer"></div>
+
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+    <div th:replace="frag/component::script"></div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<div th:fragment="sidebar">
+
+    <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+        <ul>
+            <li><a th:href="@{/}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+            <!--<li th:if="${rolenya[0]} == 'Employee'"><a th:href="@{/theory}"><i class="icon icon-th-list"></i> <span>Theory</span></a> </li>-->
+<!--            <li class="submenu"> 
+                <a href="#" th:if="${rolenya[0]} == 'Trainer'">
+                    <i class="icon icon-th-list"></i> 
+                    <span>Theory</span> 
+                    <span class="label label-important">2</span>
+                </a>
+                <ul th:if="${rolenya[0]} == 'Trainer'">
+                    <li><a href="theory">Lihat Theory</a></li>
+                    <li>
+                        <a href="theory_input">Masukkan Theory</a>
+                    </li>
+                </ul>
+            </li>-->
+            <li class="submenu"> 
+                <a href="#">
+                    <i class="icon icon-th-list"></i> 
+                    <span>Kelola</span> 
+                    <span class="label label-important">3</span>
+                </a>
+                <ul>
+                    <li><a href="toko">Kelola Nama Toko</a></li>
+                    <li>
+                        <a href="jenisProduk">Kelola Jenis Produk</a>
+                    </li>
+                    <li>
+                        <a href="produk">Kelola Produk</a>
+                    </li>
+                    <li>
+                        <a href="orderan">Kelola Orderan</a>
+                    </li>
+                </ul>
+            </li>
+    </div>
+</div>
