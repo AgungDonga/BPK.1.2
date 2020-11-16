@@ -68,7 +68,7 @@
                             </li>
                         </ul>
                     </li>
-                    
+
                 </ul>
             </div>
         </nav>
@@ -157,7 +157,7 @@
 <div th:fragment="footer">
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0.0
+            <b>Version</b> 1.2.0
         </div>
         <strong>Copyright &copy; 2020 Powered by <a href="#">Agung Layang Donga</a>, & <a href="#">Bagus Widyantoro Putro</a>.</strong> All rights
         reserved.
@@ -195,14 +195,64 @@
     <script>
         $(function () {
             $("#example1").DataTable();
-            $('#example2').DataTable({
+            }
+                    );
+        
+        $(function () {
+            $("#example3").DataTable({
+                "columnDefs": [{
+                        "targets": [2,3],
+                        "render": function (data, type, row) {
+                            return Number(data).toLocaleString('en-ID', {
+                                maximumFractionDigits: 3,
+                                style: 'currency',
+                                currency: 'IDR'
+                            });
+                        }
+                    }]
+            });
+            }
+                    );
+            
+            $(function () {
+            $("#example4").DataTable({
+                "columnDefs": [{
+                        "targets": [3],
+                        "render": function (data, type, row) {
+                            return Number(data).toLocaleString('en-ID', {
+                                maximumFractionDigits: 3,
+                                style: 'currency',
+                                currency: 'IDR'
+                            });
+                        }
+                    }]
+            });
+            }
+                    );
+            
+            $(function () {
+            $("#example5").DataTable({
+                "columnDefs": [{
+                        "targets": [2],
+                        "render": function (data, type, row) {
+                            return Number(data).toLocaleString('en-ID', {
+                                maximumFractionDigits: 3,
+                                style: 'currency',
+                                currency: 'IDR'
+                            });
+                        }
+                    }]
+            });
+            }
+                    );
+            $('#example').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": false,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false
-            });
+                
         });
     </script>
 </div>

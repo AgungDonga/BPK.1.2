@@ -33,7 +33,7 @@
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example3" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -66,7 +66,7 @@
                                     </tfoot>
                                 </table>
                                 <h5><strong>Total Penghasilan BULANAN:</strong></h5>
-                                <p th:text="${totalHarganya}"></p>
+                                <p th:text="${#numbers.formatDecimal(totalHarganya, 0, 'COMMA', 2, 'POINT')}"></p>
                                 <!-- /.modal INSERT -->
                                 <div class="modal fade" id="modal-primary">
                                     <div class="modal-dialog">
