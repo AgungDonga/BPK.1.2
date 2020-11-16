@@ -90,6 +90,7 @@ public class OrderanController {
                     sj.setStatus("0");
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     Date date = new Date();
+                    System.out.println("1 ="+sj.getIsTax());
                     sj.setTglKirim(formatter.format(date));
                     sj.setTglTerima(formatter.format(date));
                     sj.setIsTax("1");

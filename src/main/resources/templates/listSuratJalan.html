@@ -52,7 +52,7 @@
                                             <td th:text="${row.tglTerima}">Tanggal Terima</td>
                                             <td><a th:href="'detailSuratJalan?id='+${row.orderan.toko.namaToko}+'&id2='+${row.tglKirim}">Detail</a>
                                                 <form action="#" th:action="@{'invoice/save?id='+${row.orderan.toko.namaToko}+'&id2='+${row.tglKirim}}" method="post" enctype="multipart/form-data">
-                                                    <!--<input value="0" name="isTax" id="isTax" type="checkbox"> Include Pajak?-->
+                                                    <input value="0" name="isTax" id="isTax" type="checkbox"> Include Pajak?
                                                     <button type="submit" class="btn btn-primary" align="right">Jadikan Invoice</button>
                                                 </form>
                                             </td>

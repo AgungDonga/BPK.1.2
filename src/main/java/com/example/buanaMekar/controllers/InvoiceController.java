@@ -121,6 +121,7 @@ public class InvoiceController {
 
     @RequestMapping("/invoice/new")
     public String showNewInvoiceForm(Model model) {
+        model.addAttribute("someBean", new SuratJalan());
         Invoice invoice = new Invoice();
         model.addAttribute("orderan", service.getAllOrderan());
         model.addAttribute("invoice", invoice);
@@ -128,7 +129,7 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/invoice/save", method = RequestMethod.POST)
-    public String saveInvoice(HttpServletRequest request) {
+    public String saveInvoice(@RequestParam(value="isTax", required=false, defaultValue = "1") String isTax,  HttpServletRequest request) {
 
         Invoice invoicenya = new Invoice();
         String arrayBulan[] = {"O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"};
@@ -145,6 +146,7 @@ public class InvoiceController {
             SuratJalan sj = new SuratJalan();
 
             sj.setId(listSuratJalans.get(i).getId());
+            System.out.println("1 = "+isTax);
             System.out.println("Nilainya 1 = " + listSuratJalans.get(i).getId());
             sj.setOrderan(listSuratJalans.get(i).getOrderan());
             sj.setTglKirim(listSuratJalans.get(i).getTglKirim());
@@ -154,7 +156,7 @@ public class InvoiceController {
             sj.setIsTax(sj.getIsTax()); //ini
             System.out.println("get Tax " + sj.getIsTax());
             System.out.println("get ID " + sj.getId());
-            sj.setIsTax("1");
+            sj.setIsTax(isTax);
             System.out.println("Nilainya 2 = " + sj.getIsTax());
             invoicenya.setSuratJalan(sj);
 

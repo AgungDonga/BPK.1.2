@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="350" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8221e155-5de8-416b-affc-247a4ad507b5">
-	<property name="ireport.zoom" value="1.210000000000004"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.7715610000000064"/>
+	<property name="ireport.x" value="234"/>
+	<property name="ireport.y" value="18"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["D:\\@ProjectAgung\\buana_mekar\\buanaMekar\\DATA KERJA\\PROYEK BUANA MEKAR\\buanaMekar\\src\\main\\resources\\"]]></defaultValueExpression>
 	</parameter>
@@ -14,12 +14,14 @@
 	</parameter>
 	<queryString>
 		<![CDATA[select 
+               
 p.merk_produk namaBarang,
 p.id kodeBarang,
 o.quantity quantity,
 p.harga hargaSatuan,
 o.total_harga subHarga,
 t.alamat_toko alamatToko,
+sj.id idSJ, 
 sj.tgl_kirim tanggalKirim
 from orderan o, surat_jalan sj, toko t, produk p
 where o.toko = t.id 
@@ -37,6 +39,7 @@ AND sj.tgl_kirim like $P{param2}]]>
 	<field name="subHarga" class="java.lang.String"/>
 	<field name="alamatToko" class="java.lang.String"/>
 	<field name="tanggalKirim" class="java.lang.String"/>
+	<field name="idSJ" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -60,6 +63,20 @@ AND sj.tgl_kirim like $P{param2}]]>
 				<reportElement uuid="334cf2ca-7355-4655-81a9-4632b76b1a6d" x="17" y="-15" width="103" height="53"/>
 				<imageExpression><![CDATA["static/images/bpk3.jpg"]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement uuid="141656aa-1aac-4da1-a188-058a92d6b8ee" x="534" y="-15" width="50" height="20"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{param1}.replaceAll($P{param1}, $F{idSJ})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4c247431-cbfe-4507-b15e-e91445c7231e" x="506" y="-15" width="29" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO :]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
