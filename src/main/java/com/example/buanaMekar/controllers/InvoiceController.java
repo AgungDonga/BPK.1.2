@@ -129,7 +129,7 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/invoice/save", method = RequestMethod.POST)
-    public String saveInvoice(@RequestParam(value="isTax", required=false, defaultValue = "1") String isTax,  HttpServletRequest request) {
+    public String saveInvoice(@RequestParam(value = "isTax", required = false, defaultValue = "0") String isTax, HttpServletRequest request) {
 
         Invoice invoicenya = new Invoice();
         String arrayBulan[] = {"O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"};
@@ -139,14 +139,13 @@ public class InvoiceController {
             totalHarga = totalHarga + Double.valueOf(listSuratJalans.get(i).getOrderan().getTotalHarga());
         }
 
-        Double ppnnya = totalHarga * 10 / 100;
         for (int i = 0; i < listSuratJalans.size(); i++) {
             invoicenya.setId(i);
             invoicenya.setStatus(0);
             SuratJalan sj = new SuratJalan();
 
             sj.setId(listSuratJalans.get(i).getId());
-            System.out.println("1 = "+isTax);
+            System.out.println("is Tax = " + isTax);
             System.out.println("Nilainya 1 = " + listSuratJalans.get(i).getId());
             sj.setOrderan(listSuratJalans.get(i).getOrderan());
             sj.setTglKirim(listSuratJalans.get(i).getTglKirim());
@@ -154,16 +153,11 @@ public class InvoiceController {
             sj.setStatus("1");
 //            sj.setId();
             sj.setIsTax(sj.getIsTax()); //ini
-            System.out.println("get Tax " + sj.getIsTax());
-            System.out.println("get ID " + sj.getId());
             sj.setIsTax(isTax);
-            System.out.println("Nilainya 2 = " + sj.getIsTax());
             invoicenya.setSuratJalan(sj);
 
             Date today = new Date();
 
-            //If you print Date, you will get un formatted output
-            System.out.println("Today is : " + today);
 
             //formatting date in Java using SimpleDateFormat
             SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy");
@@ -186,9 +180,21 @@ public class InvoiceController {
                 e.printStackTrace();
             }
 
-            Double result = totalHarga + ppnnya;
-            invoicenya.setPpn(ppnnya.toString());
-            invoicenya.setTotalHarga(result.toString());
+            Double result = null;
+            Double ppnnya = totalHarga * 10 / 100;
+            if (isTax.equals("1")) {
+                System.out.println("PPN nya :"+ppnnya);
+                result = totalHarga + ppnnya;
+                invoicenya.setPpn(ppnnya.toString());
+                invoicenya.setTotalHarga(result.toString());
+            } else {
+                invoicenya.setPpn("0");
+                result = Double.parseDouble("0");
+                invoicenya.setTotalHarga(totalHarga.toString());
+            }
+
+            System.out.println("TOTAL HRGA= "+totalHarga);
+            
             service.save(invoicenya);
             serviceSuratJalan.save(sj);
 //            repo.save(sj);
