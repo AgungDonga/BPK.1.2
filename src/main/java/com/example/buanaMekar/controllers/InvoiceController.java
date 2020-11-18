@@ -94,7 +94,7 @@ public class InvoiceController {
                 penagihan.setIdInvoice(invoice);
                 penagihan.setInvoice(listInvoices.get(i).getInvoice());
                 penagihan.setStatusPenagihan("BELUM DITAGIH");
-                penagihan.setCatatan("Belum ada aksi");
+                penagihan.setCatatan("BELUM ADA AKSI");
                 servicePenagihan.save(penagihan);
             }
         }

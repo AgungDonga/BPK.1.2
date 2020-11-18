@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="350" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8221e155-5de8-416b-affc-247a4ad507b5">
-	<property name="ireport.zoom" value="2.143588810000011"/>
-	<property name="ireport.x" value="44"/>
-	<property name="ireport.y" value="95"/>
+	<property name="ireport.zoom" value="1.464100000000007"/>
+	<property name="ireport.x" value="109"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["D:\\@ProjectAgung\\buana_mekar\\buanaMekar\\DATA KERJA\\PROYEK BUANA MEKAR\\buanaMekar\\src\\main\\resources\\"]]></defaultValueExpression>
 	</parameter>
@@ -12,6 +12,9 @@
 	<parameter name="param2" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{param2}]]></defaultValueExpression>
 	</parameter>
+	<parameter name="param3" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{param3}]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[select DISTINCT 
 p.merk_produk namaBarang,
@@ -20,6 +23,7 @@ concat('Rp ', format( (p.harga), 0)) hargaSatuan,
 concat('Rp ', format( (o.total_harga), 0)) subHarga,
 concat('Rp ', format( (i.total_harga), 0)) totalHarga,
 concat('Rp ', format( (i.total_harga - i.ppn), 0)) subTotalHarga,
+concat (i.total_harga) totalHarga2,
 i.invoice invoice,
 concat('Rp ', format( (i.ppn), 0)) ppnnya 
 from orderan o, surat_jalan sj, toko t, produk p, invoice i
@@ -37,6 +41,7 @@ AND sj.tgl_kirim like $P{param2}]]>
 	<field name="hargaSatuan" class="java.lang.String"/>
 	<field name="subHarga" class="java.lang.String"/>
 	<field name="totalHarga" class="java.lang.String"/>
+	<field name="totalHarga2" class="java.lang.String"/>
 	<field name="subTotalHarga" class="java.lang.String"/>
 	<field name="invoice" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -255,6 +260,18 @@ AND sj.tgl_kirim like $P{param2}]]>
 			<line>
 				<reportElement uuid="e709fe23-96dc-473a-b83f-266a5d99b09f" x="156" y="76" width="100" height="1"/>
 			</line>
+			<staticText>
+				<reportElement uuid="835c4cd5-8cff-40bf-94ea-79ddcdac6619" x="288" y="52" width="71" height="20"/>
+				<textElement/>
+				<text><![CDATA[Terbilang    : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="65fd513d-90fb-4ea7-a61e-a1c79da8a649" x="288" y="65" width="309" height="15"/>
+				<textElement>
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.example.buanaMekar.services.InvoiceService.terbilang(new BigDecimal($F{totalHarga2}))]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 </jasperReport>
