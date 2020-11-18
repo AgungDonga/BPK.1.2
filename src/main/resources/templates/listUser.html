@@ -61,7 +61,7 @@
                                     </thead>
                                     <tbody>
                                         <tr th:each="user : ${listUsers}">
-                                            <td> th:text="${user.id}"</td>
+                                            <td th:text="${user.userId}"></td>
                                             <td th:text="${user.username}">Username</td>
                                             <td th:text="${user.password}">Password</td>
                                             <td th:text="${user.role}">Role</td>
