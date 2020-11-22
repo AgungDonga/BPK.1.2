@@ -36,8 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "SuratJalan.findById", query = "SELECT s FROM SuratJalan s WHERE s.id = :id")
     , @NamedQuery(name = "SuratJalan.findByTglKirim", query = "SELECT s FROM SuratJalan s WHERE s.tglKirim = :tglKirim")
     , @NamedQuery(name = "SuratJalan.findByTglTerima", query = "SELECT s FROM SuratJalan s WHERE s.tglTerima = :tglTerima")
-    , @NamedQuery(name = "SuratJalan.findByIsTax", query = "SELECT s FROM SuratJalan s WHERE s.isTax = :isTax")
-    , @NamedQuery(name = "SuratJalan.findByStatus", query = "SELECT s FROM SuratJalan s WHERE s.status = :status")})
+    , @NamedQuery(name = "SuratJalan.findByStatus", query = "SELECT s FROM SuratJalan s WHERE s.status = :status")
+    , @NamedQuery(name = "SuratJalan.findByIsTax", query = "SELECT s FROM SuratJalan s WHERE s.isTax = :isTax")})
 public class SuratJalan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,7 +58,6 @@ public class SuratJalan implements Serializable {
     @Size(max = 100)
     @Column(name = "is_tax")
     private String isTax;
-
     @OneToMany(mappedBy = "suratJalan", fetch = FetchType.LAZY)
     private List<Invoice> invoiceList;
     @JoinColumn(name = "orderan", referencedColumnName = "id")
@@ -104,6 +103,14 @@ public class SuratJalan implements Serializable {
         this.status = status;
     }
 
+    public String getIsTax() {
+        return isTax;
+    }
+
+    public void setIsTax(String isTax) {
+        this.isTax = isTax;
+    }
+
     @XmlTransient
     public List<Invoice> getInvoiceList() {
         return invoiceList;
@@ -120,16 +127,6 @@ public class SuratJalan implements Serializable {
     public void setOrderan(Orderan orderan) {
         this.orderan = orderan;
     }
-
-    public String getIsTax() {
-        return isTax;
-    }
-
-    public void setIsTax(String isTax) {
-        this.isTax = isTax;
-    }
-    
-    
 
     @Override
     public int hashCode() {
@@ -156,5 +153,4 @@ public class SuratJalan implements Serializable {
         return "com.example.buanaMekar.entities.SuratJalan[ id=" + id + " ]";
     }
     
-
 }

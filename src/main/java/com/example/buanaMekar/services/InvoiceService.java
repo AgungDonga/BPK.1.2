@@ -62,6 +62,10 @@ public class InvoiceService {
         return repo.findBulanan(key1);
     }
     
+    public String findBulananOmset (String key1){
+        return repo.findBulananOmset(key1);
+    }
+    
     public String totalBulanan(String key1){
         return repo.totalBulanan(key1);
     }

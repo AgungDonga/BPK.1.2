@@ -42,6 +42,7 @@
                                             <th>Total Harga</th>
                                             <th>Tanggal Jatuh Tempo</th>
                                             <th></th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -52,6 +53,7 @@
                                             <td th:text="${invoice.totalHarga}"></td>
                                             <td th:text="${invoice.tglJatuhTempo}"></td>
                                             <td><a th:href="'detailInvoice?id='+${invoice.suratJalan.orderan.toko.namaToko}+'&id2='+${invoice.suratJalan.tglKirim}">Detail</a></td>
+                                            <td> <button> AA </button></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>

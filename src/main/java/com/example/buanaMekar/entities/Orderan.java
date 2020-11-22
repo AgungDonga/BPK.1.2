@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Orderan.findById", query = "SELECT o FROM Orderan o WHERE o.id = :id")
     , @NamedQuery(name = "Orderan.findByTotalHarga", query = "SELECT o FROM Orderan o WHERE o.totalHarga = :totalHarga")
     , @NamedQuery(name = "Orderan.findByQuantity", query = "SELECT o FROM Orderan o WHERE o.quantity = :quantity")
-    , @NamedQuery(name = "Orderan.findByStatus", query = "SELECT o FROM Orderan o WHERE o.status = :status")})
+    , @NamedQuery(name = "Orderan.findByStatus", query = "SELECT o FROM Orderan o WHERE o.status = :status")
+    , @NamedQuery(name = "Orderan.findByTanggalOrder", query = "SELECT o FROM Orderan o WHERE o.tanggalOrder = :tanggalOrder")})
 public class Orderan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,6 +55,9 @@ public class Orderan implements Serializable {
     @Size(max = 50)
     @Column(name = "status")
     private String status;
+    @Size(max = 20)
+    @Column(name = "tanggal_order")
+    private String tanggalOrder;
     @JoinColumn(name = "toko", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Toko toko;
@@ -100,6 +104,14 @@ public class Orderan implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTanggalOrder() {
+        return tanggalOrder;
+    }
+
+    public void setTanggalOrder(String tanggalOrder) {
+        this.tanggalOrder = tanggalOrder;
     }
 
     public Toko getToko() {

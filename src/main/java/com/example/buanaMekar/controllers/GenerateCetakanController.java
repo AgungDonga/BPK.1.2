@@ -51,6 +51,9 @@ public class GenerateCetakanController {
 //            model.addAttribute("totalHarganya", service.totalBulanan("%"+bulann+"/"+tahunn+"%"));
             model.addAttribute("totalHarganya", service.totalBulanan("%"+bulann+"/"+tahunn+"%"));
             
+            model.addAttribute("totalOmzetnya", service.findBulananOmset("%"+bulann+"/"+tahunn+"%"));
+            
+            
             return "listInvoiceBulanan";
 //            sout 
 //            SimpleDateFormat DateFor = new SimpleDateFormat("dd/mm/yyyy");

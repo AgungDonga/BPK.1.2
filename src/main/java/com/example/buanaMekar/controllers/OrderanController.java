@@ -13,6 +13,7 @@ import com.example.buanaMekar.services.ProdukService;
 import com.example.buanaMekar.services.SuratJalanService;
 import com.example.buanaMekar.services.TokoService;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,6 +129,9 @@ public class OrderanController {
         int getHarga = Integer.valueOf(orderan.getProduk().getHarga());
         int total = getQuantity * getHarga;
         orderan.setTotalHarga(String.valueOf(total));
+        Calendar cal3 = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        orderan.setTanggalOrder(sdf.format(cal3.getTime()));
         service.save(orderan);
         return "redirect:/orderan";
     }
