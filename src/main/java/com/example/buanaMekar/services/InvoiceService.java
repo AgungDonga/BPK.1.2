@@ -77,14 +77,13 @@ public class InvoiceService {
 
     }
 
-    public Invoice get(String string) {
-        return repo.findById(string).get();
+    public Invoice get(Integer id) {
+        return repo.findById(id).get();
 
     }
 
-    public void delete(String string) {
-        repo.deleteById(string);
-
+    public void delete(int id) {
+        repo.deleteById(id);
     }
 
     public List<Orderan> getAllOrderan() {

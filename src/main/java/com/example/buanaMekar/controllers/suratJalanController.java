@@ -66,4 +66,10 @@ public class suratJalanController {
         return "listDetailSuratJalan";
     }
     
+    @RequestMapping("/suratJalan/delete/{id}")
+    public String deleteSuratJalan(@PathVariable(name = "id") Integer id) {
+        service.delete(id);
+        return "redirect:/suratJalan";
+    }
+    
 }

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -47,6 +48,12 @@ public class penagihanController {
         id2 = request.getParameter("id2").replaceAll("%20", " ");
         model.addAttribute("listSuratJalans", listSuratJalans);
         return "listDetailPenagihan";
+    }
+    
+    @RequestMapping("/penagihan/delete/{id}")
+    public String deleteInvoice(@PathVariable(name = "id") String id) {
+        service.delete(Integer.parseInt(id));
+        return "redirect:/penagihan";
     }
 
 }

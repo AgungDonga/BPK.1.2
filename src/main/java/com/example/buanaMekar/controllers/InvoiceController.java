@@ -236,16 +236,15 @@ public class InvoiceController {
     @RequestMapping("/invoice/edit/{id}")
     public ModelAndView showEditInvoiceForm(@PathVariable(name = "id") String id, Model model) {
         ModelAndView mav = new ModelAndView("editOrderan");
-        Invoice invoice = service.get(id);
+        Invoice invoice = service.get(Integer.parseInt(id));
         model.addAttribute("orderan", service.getAllOrderan());
         mav.addObject("invoice", invoice);
         return mav;
     }
 
     @RequestMapping("/invoice/delete/{id}")
-    public String deleteOrderan(@PathVariable(name = "id") String id) {
-        service.delete(id);
-
+    public String deleteInvoice(@PathVariable(name = "id") String id) {
+        service.delete(Integer.parseInt(id));
         return "redirect:/invoice";
     }
 

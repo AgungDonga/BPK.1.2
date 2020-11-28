@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author Insane
  */
 @Repository
-public interface InvoiceRepository extends CrudRepository<Invoice, String>{
+public interface InvoiceRepository extends CrudRepository<Invoice, Integer>{
     
     List<Invoice> findAll();
     

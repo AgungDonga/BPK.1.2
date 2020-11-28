@@ -50,7 +50,9 @@
                                             <td th:text="${penagihans.statusPenagihan}">Status Penagihan</td>
                                             <td th:text="${penagihans.catatan}">Catatan</td>
 <!--                                            <td><a th:href="'detailPenagihan?id='+${penagihans.suratJalan.orderan.toko.namaToko}+'&id2='+${penagihans.suratJalan.tglKirim}">Detail</a></td>-->
-                                            <td><a th:href="'detailPenagihan?id='+${penagihans.idInvoice.suratJalan.orderan.toko.namaToko}+'&id2='+${penagihans.idInvoice.suratJalan.tglKirim}">Detail</a></td>
+                                            <td><a th:href="'detailPenagihan?id='+${penagihans.idInvoice.suratJalan.orderan.toko.namaToko}+'&id2='+${penagihans.idInvoice.suratJalan.tglKirim}">Detail</a>
+                                            <a class="btn btn-danger" th:href="@{'/penagihan/delete/'+${penagihans.id}}" onclick="return confirm('Apakah kamu yakin ingin menghapus?');"><i class="fa fa-remove"></i></a>
+                                            </td>
 
                                         </tr>
                                     </tbody>

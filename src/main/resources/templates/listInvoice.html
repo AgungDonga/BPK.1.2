@@ -57,6 +57,7 @@
                                                 <div th:switch="${invoice.status}"> 
                                                     <a th:href="'invoiceToPenagihan?id='+${invoice.invoice}" visible="false" th:case="'0'">Ke Penagihan</a>
                                                 </div>
+                                                <a class="btn btn-danger" th:href="@{'/invoice/delete/'+${invoice.id}}" onclick="return confirm('Apakah kamu yakin ingin menghapus?');"><i class="fa fa-remove"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
