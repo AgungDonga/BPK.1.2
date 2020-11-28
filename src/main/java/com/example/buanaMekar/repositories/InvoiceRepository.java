@@ -20,8 +20,11 @@ public interface InvoiceRepository extends CrudRepository<Invoice, String>{
     
     List<Invoice> findAll();
     
-    @Query("SELECT i FROM Invoice i where i.status = 0 GROUP BY i.invoice ")
+    @Query("SELECT i FROM Invoice i GROUP BY i.invoice ")
     List<Invoice> getAllInvoice();
+    
+    @Query("SELECT i FROM Invoice i WHERE i.invoice = ?1 ")
+    List<Invoice> getInvoiceById(String key1);
     
     @Query("SELECT i FROM Invoice i WHERE i.tglJatuhTempo LIKE ?1 AND i.status = 1 GROUP BY i.invoice")
     List<Invoice> findBulanan(String key1);

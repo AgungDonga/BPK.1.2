@@ -71,35 +71,71 @@ public class InvoiceController {
         SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
 
         List<Invoice> listInvoices = service.listAllInvoice();
-        model.addAttribute("listInvoices", listInvoices);
-
-//        insert ke penagihan
+        
         for (int i = 0; i < listInvoices.size(); i++) {
-            int hasilPerbandingan = ft.format(HariSekarang).compareTo(listInvoices.get(i).getTglJatuhTempo().substring(0, 10));
-            System.out.println(ft.format(HariSekarang) + "=" + listInvoices.get(i).getTglJatuhTempo().substring(0, 10));
-            System.out.println("Hasil perbandingan = " + hasilPerbandingan);
-            if (hasilPerbandingan >= 0 && listInvoices.get(i).getStatus() == 0) {
-                System.out.println("MASUK PENAGIHAN");
-                Invoice invoice = new Invoice();
-                invoice.setId(listInvoices.get(i).getId());
-                invoice.setInvoice(listInvoices.get(i).getInvoice());
-                invoice.setSuratJalan(listInvoices.get(i).getSuratJalan());
-                invoice.setPpn(listInvoices.get(i).getPpn());
-                invoice.setTotalHarga(listInvoices.get(i).getTotalHarga());
-                invoice.setTglJatuhTempo(listInvoices.get(i).getTglJatuhTempo().substring(0, 10));
-                invoice.setStatus(1);
-                service.save(invoice);
-
-                Penagihan penagihan = new Penagihan();
-                penagihan.setIdInvoice(invoice);
-                penagihan.setInvoice(listInvoices.get(i).getInvoice());
-                penagihan.setStatusPenagihan("BELUM DITAGIH");
-                penagihan.setCatatan("Belum ada aksi");
-                servicePenagihan.save(penagihan);
+            if (listInvoices.get(i).getStatus() == 0 ) {   
+                model.addAttribute("kePenagihan", "Ke Penagihan");
             }
         }
+        model.addAttribute("listInvoices", listInvoices);
+       
+
+//        insert ke penagihan
+//        for (int i = 0; i < listInvoices.size(); i++) {
+//            int hasilPerbandingan = ft.format(HariSekarang).compareTo(listInvoices.get(i).getTglJatuhTempo().substring(0, 10));
+//            System.out.println(ft.format(HariSekarang) + "=" + listInvoices.get(i).getTglJatuhTempo().substring(0, 10));
+//            System.out.println("Hasil perbandingan = " + hasilPerbandingan);
+//            if (hasilPerbandingan >= 0 && listInvoices.get(i).getStatus() == 0) {
+//                System.out.println("MASUK PENAGIHAN");
+//                Invoice invoice = new Invoice();
+//                invoice.setId(listInvoices.get(i).getId());
+//                invoice.setInvoice(listInvoices.get(i).getInvoice());
+//                invoice.setSuratJalan(listInvoices.get(i).getSuratJalan());
+//                invoice.setPpn(listInvoices.get(i).getPpn());
+//                invoice.setTotalHarga(listInvoices.get(i).getTotalHarga());
+//                invoice.setTglJatuhTempo(listInvoices.get(i).getTglJatuhTempo().substring(0, 10));
+//                invoice.setStatus(1);
+//                service.save(invoice);
+//
+//                Penagihan penagihan = new Penagihan();
+//                penagihan.setIdInvoice(invoice);
+//                penagihan.setInvoice(listInvoices.get(i).getInvoice());
+//                penagihan.setStatusPenagihan("BELUM DITAGIH");
+//                penagihan.setCatatan("Belum ada aksi");
+//                servicePenagihan.save(penagihan);
+//            }
+//        }
         return "listInvoice";
 
+    }
+    
+    @RequestMapping("/invoiceToPenagihan")
+    public String invoiceToPenagihan(Model model, HttpServletRequest request){
+        String id = request.getParameter("id");
+        List<Invoice> listInvoices = service.listInvoiceById(id);
+        
+        //        insert ke penagihan
+        for (int i = 0; i < listInvoices.size(); i++) {
+
+            System.out.println("MASUK PENAGIHAN");
+            Invoice invoice = new Invoice();
+            invoice.setId(listInvoices.get(i).getId());
+            invoice.setInvoice(listInvoices.get(i).getInvoice());
+            invoice.setSuratJalan(listInvoices.get(i).getSuratJalan());
+            invoice.setPpn(listInvoices.get(i).getPpn());
+            invoice.setTotalHarga(listInvoices.get(i).getTotalHarga());
+            invoice.setTglJatuhTempo(listInvoices.get(i).getTglJatuhTempo().substring(0, 10));
+            invoice.setStatus(1);
+            service.save(invoice);
+
+            Penagihan penagihan = new Penagihan();
+            penagihan.setIdInvoice(invoice);
+            penagihan.setInvoice(listInvoices.get(i).getInvoice());
+            penagihan.setStatusPenagihan("BELUM DITAGIH");
+            penagihan.setCatatan("Belum ada aksi");
+            servicePenagihan.save(penagihan);
+        }
+        return "listInvoice";
     }
 
 //    @RequestMapping("/laporanBulanan")

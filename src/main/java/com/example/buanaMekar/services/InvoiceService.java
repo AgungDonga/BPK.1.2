@@ -50,12 +50,14 @@ public class InvoiceService {
 
     public List<Invoice> listAll() {
         return repo.findAll();
-
     }
 
     public List<Invoice> listAllInvoice() {
         return repo.getAllInvoice();
-
+    }
+    
+    public List<Invoice> listInvoiceById(String key1){
+        return repo.getInvoiceById(key1);
     }
     
     public List<Invoice> findBulanan(String key1){
