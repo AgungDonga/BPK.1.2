@@ -29,10 +29,10 @@ public interface InvoiceRepository extends CrudRepository<Invoice, Integer>{
     @Query("SELECT i FROM Invoice i WHERE i.tglJatuhTempo LIKE ?1 AND i.status = 1 GROUP BY i.invoice")
     List<Invoice> findBulanan(String key1);
     
-    @Query("SELECT SUM(o.totalHarga) / COUNT(o.totalHarga) FROM Orderan o WHERE o.tanggalOrder LIKE ?1")
+    @Query("SELECT concat('Rp ', format( (SUM(o.totalHarga)), 0)) FROM Orderan o WHERE o.tanggalOrder LIKE ?1")
     String findBulananOmset (String key1);
     
-    @Query("SELECT SUM(i.totalHarga) / COUNT(i.totalHarga) FROM Invoice i WHERE i.tglJatuhTempo LIKE ?1 AND i.status = 1 GROUP BY i.invoice")
+    @Query("SELECT concat('Rp ', format( (SUM(i.totalHarga)), 0)) FROM Invoice i WHERE i.tglJatuhTempo LIKE ?1 AND i.status = 1")
     String totalBulanan (String key1);
     
 }

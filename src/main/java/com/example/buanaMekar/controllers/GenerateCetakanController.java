@@ -50,7 +50,7 @@ public class GenerateCetakanController {
             long totalHarga = 0;
 //            model.addAttribute("totalHarganya", service.totalBulanan("%"+bulann+"/"+tahunn+"%"));
             model.addAttribute("totalHarganya", service.totalBulanan("%"+bulann+"/"+tahunn+"%"));
-            
+//            model.addAttribute("totalHarganya", "");
             model.addAttribute("totalOmzetnya", service.findBulananOmset("%"+bulann+"/"+tahunn+"%"));
             
             
